@@ -1,0 +1,63 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="#" class="link panel-open" data-panel="left">
+            <i class="icon f7-icons if-ios">menu</i>
+            <i class="icon material-icons if-md">menu</i>
+          </a>
+        </div>
+        <div class="title sliding">My App</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block block-strong">
+        <p>Here is your blank Framework7 app. Let's see what we have here.</p>
+      </div>
+      <div class="block-title">Pedometer</div>
+      <div class="block">
+        <div class="row">
+          <div class="col-50">
+            <a href="#" class="button button-fill button-raised start-pedometer" @click="start">Start pedometer</a>
+          </div>
+          <div class="col-50">
+            <a href="#" class="button button-fill button-raised stop-pedometer" @click="stop">Stop pedometer</a>
+          </div>
+        </div>
+      </div>
+      <div class="block block-strong text-align-center">
+        <h1 class="output"></h1>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    methods: {
+      start: function (e) {
+        const self = this;
+        const app = self.$app;
+
+        // Start pedometer
+        pedometer.startPedometerUpdates((pedometerData) => {
+          console.log(pedometerData)
+          self.$el.find('.output').html(`${pedometerData.numberOfSteps} step (s)`)
+        }, () => { app.dialog.alert(JSON.stringify(arguments)) });
+      },
+      stop: function () {
+        const self = this;
+        const app = self.$app;
+
+        // Init pedometer
+        pedometer.stopPedometerUpdates(() => { app.dialog.alert('Pedometer stopped.') }, () => { app.dialog.alert(JSON.stringify(arguments)) });
+      }
+    },
+    on: {
+      pageInit: function (e, page) {
+        const self = this;
+        const app = self.$app;
+      }
+    }
+  }
+</script>

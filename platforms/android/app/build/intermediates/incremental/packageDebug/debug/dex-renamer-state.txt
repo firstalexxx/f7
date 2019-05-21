@@ -1,0 +1,4 @@
+#Tue May 21 20:38:07 GMT+06:00 2019
+base.0=E\:\\phonegap\\f7\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
